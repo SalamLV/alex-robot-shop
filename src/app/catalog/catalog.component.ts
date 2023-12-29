@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IProduct } from '_course-resources/catalog/product.model';
+import { IProduct } from './product.model';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'bot-catalog',
@@ -10,7 +11,8 @@ export class CatalogComponent {
   products: IProduct[];
   filter: string = '';
 
-  constructor () {
+
+  constructor (private carSvc: CartService) {
     this.products = [
       {
         id: 1,
@@ -188,8 +190,8 @@ export class CatalogComponent {
     ];
   }
 
-  getImageUrl(product: IProduct) {
-    return '/assets/images/robot-parts/' + product.imageName;
+  addToCart(product: IProduct) {
+    this.carSvc.add(product);
   }
 
   getFilteredProducts() {
