@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './catalog/product.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,11 @@ export class CartService {
 
   add(product: IProduct) {
     this.cart.push(product);
-    console.log(`Product ${product.name} added to cart`);
+    this.http.post('/api/cart', this.cart).subscribe( () => {
+      console.log(`Product ${product.name} added to cart`);
+    })
+    
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 }
