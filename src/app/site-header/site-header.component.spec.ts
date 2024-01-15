@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SiteHeaderComponent } from './site-header.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('SiteHeaderComponent', () => {
   let component: SiteHeaderComponent;
@@ -8,7 +9,11 @@ describe('SiteHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SiteHeaderComponent ]
+      declarations: [ SiteHeaderComponent ],
+      providers : [
+        HttpClient,
+        HttpHandler
+      ]
     })
     .compileComponents();
   });
